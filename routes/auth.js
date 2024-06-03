@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const prisma = new PrismaClient();
+const jwtSecret = process.env.JWT_SECRET_KEY;
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -33,10 +34,11 @@ router.post("/login", async (req, res) => {
       where: { username },
     });
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign({ id: user.id }, "secret-key", {
+      const token = jwt.sign({ id: user.id }, jwtSecret, {
         expiresIn: "1h",
       });
-      res.json({ token });
+      const { id, username } = user;
+      res.json({ token, user: { id, username } });
     } else {
       res.status(401).json({ error: "Invalid credentials" });
     }

@@ -16,7 +16,8 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", username);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        console.log(response);
         window.location.href = "/";
       } else {
         throw new Error(data.message || "Failed to login");
