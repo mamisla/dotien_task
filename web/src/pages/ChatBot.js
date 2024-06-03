@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import ChatHistory from "../components/ChatHistory";
+
+const user = JSON.parse(localStorage.getItem("user"));
+const token = localStorage.getItem("token");
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([
@@ -10,6 +14,8 @@ const ChatBot = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [endpoint, setEndpoint] = useState("openai");
+
+  const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,8 +39,9 @@ const ChatBot = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ message: input }),
+          body: JSON.stringify({ message: input, userId: user.id }),
         }
       );
 
@@ -57,6 +64,12 @@ const ChatBot = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="w-full max-w-4xl bg-white p-6 shadow-md rounded-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">ChatBot</h2>
+        <button
+          onClick={() => setShowHistory(true)}
+          className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600"
+        >
+          Chat History
+        </button>
         <div className="mb-4">
           <label className="mr-2">Choose Endpoint:</label>
           <select
@@ -107,6 +120,7 @@ const ChatBot = () => {
           </button>
         </div>
       </div>
+      {showHistory && <ChatHistory onClose={() => setShowHistory(false)} />}
     </div>
   );
 };

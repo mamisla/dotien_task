@@ -11,11 +11,14 @@ model User {
   id       Int      @id @default(autoincrement())
   username String   @unique
   password String
+  messages Message[]
 }
 
-model ChatSession {
+model Message {
   id        Int      @id @default(autoincrement())
-  user      String
-  messages  Json
-  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  role      String  
+  content   String
+  timestamp DateTime @default(now())
 }

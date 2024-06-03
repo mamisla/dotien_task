@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const username = localStorage.getItem("username");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const navigateToChat = () => {
     navigate("/chat");
@@ -21,9 +21,9 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-6">Hello to Chat Bot</h1>
-      {token && username ? (
+      {token && user ? (
         <>
-          <p className="text-lg mb-2">Welcome, {username}!</p>
+          <p className="text-lg mb-2">Welcome, {user.username}!</p>
           <p className="text-lg mb-6">
             If you want to chat, press the button below.
           </p>
