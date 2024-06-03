@@ -13,7 +13,10 @@ This project is a full-stack application using Node.js, Express, React, jsonwebt
 
 #### Start PostgreSQL
 
-    depending on your machine start postgresql and login as superuser
+have your postgreSQL listening on port 5432 (default)
+depending on your machine start postgresql and login as superuser
+
+    psql -U postgres
     
 #### Create a Database and User
 
@@ -39,7 +42,7 @@ Create a new database and user:
 Create a `.env` file in the root directory with the following content:
 
     DATABASE_URL="postgresql://aiuser:user@localhost:5432/ai_project?schema=public"
-    OPENAI_API_KEY="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"
+    OPENAI_API_KEY="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"
     LANGCHAIN_API_KEY="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"
     LANGCHAIN_TRACING_V2=true
     HUGGINGFACE_API_KEY="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"
