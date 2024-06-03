@@ -72,6 +72,11 @@ Apply migrations:
     cd ..
     npm start
 
+### 7. Enter app
+Type in your web browser
+
+    localhost:3000
+
 ## Additional Information
 
 ### Backend
