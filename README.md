@@ -37,16 +37,9 @@ Create a new database and user:
     git clone https://github.com/mamisla/dotien_task.git
     cd dotien_task
 
-#### Create Environment Files
+#### Create Environment File
 
-Create a `.env` file in the root directory with the following content:
-
-    DATABASE_URL="postgresql://aiuser:user@localhost:5432/ai_project?schema=public"
-    OPENAI_API_KEY="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"
-    LANGCHAIN_API_KEY="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"
-    LANGCHAIN_TRACING_V2=true
-    HUGGINGFACE_API_KEY="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"
-    JWT_SECRET_KEY="914b7a08e62a403c86a74806f91cfe01a13aab0fb6493466449a68afd6066112"
+Create a `.env` file in the root directory with the .env file data you got in email (api keys are sensitive data).
   
 ### 4. Configure Backend
 
