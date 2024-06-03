@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: aiuser
+      POSTGRES_PASSWORD: ai_project
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  backend:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  environment: DATABASE_URL:{DATABASE_URL}
+    OPENAI_API_KEY:{OPENAI_API_KEY}
+    LANGCHAIN_API_KEY:{LANGCHAIN_API_KEY}
+    LANGCHAIN_TRACING_V2:{LANGCHAIN_TRACING_V2}
+    HUGGINGFACE_API_KEY:{HUGGINGFACE_API_KEY}
+    JWT_SECRET_KEY:{JWT_SECRET_KEY}
+  ports:
+    - "8000:8000"
+  depends_on:
+    - postgres
+
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:
