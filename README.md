@@ -13,7 +13,10 @@ This project is a full-stack application using Node.js, Express, React, jsonwebt
 
 #### Start PostgreSQL
 
-    depending on your machine start postgresql and login as superuser
+have your postgreSQL listening on port 5432 (default)
+depending on your machine start postgresql and login as superuser
+
+    psql -U postgres
     
 #### Create a Database and User
 
@@ -34,16 +37,9 @@ Create a new database and user:
     git clone https://github.com/mamisla/dotien_task.git
     cd dotien_task
 
-#### Create Environment Files
+#### Create Environment File
 
-Create a `.env` file in the root directory with the following content:
-
-    DATABASE_URL="postgresql://aiuser:user@localhost:5432/ai_project?schema=public"
-    OPENAI_API_KEY="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"
-    LANGCHAIN_API_KEY="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"
-    LANGCHAIN_TRACING_V2=true
-    HUGGINGFACE_API_KEY="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"
-    JWT_SECRET_KEY="914b7a08e62a403c86a74806f91cfe01a13aab0fb6493466449a68afd6066112"
+Create a `.env` file in the root directory with the .env file data you got in email (api keys are sensitive data).
   
 ### 4. Configure Backend
 
@@ -75,6 +71,11 @@ Apply migrations:
 
     cd ..
     npm start
+
+### 7. Enter app
+Type in your web browser
+
+    localhost:3000
 
 ## Additional Information
 
