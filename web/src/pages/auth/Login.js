@@ -20,7 +20,7 @@ const Login = () => {
         console.log(response);
         window.location.href = "/";
       } else {
-        throw new Error(data.message || "Failed to login");
+        throw new Error(data.error || "Failed to login");
       }
     } catch (error) {
       setError(error.message);
